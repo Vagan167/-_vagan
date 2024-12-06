@@ -36,8 +36,8 @@ from dateutil.relativedelta import relativedelta
 
 
 # Укажите свои данные от ЮКассы
-Configuration.account_id = '499395'  # Ваш идентификатор магазина
-Configuration.secret_key = 'live_s6ECrGjLPXOTUMmlbl7Lowvid0GlUo8ohR3_h3PqM94'  # Ваш секретный ключ
+Configuration.account_id = ''  # Ваш идентификатор магазина
+Configuration.secret_key = ''  # Ваш секретный ключ
 
 app = Flask(__name__)
 
@@ -59,7 +59,7 @@ class AdminState(StatesGroup):
     man = State()
 
 # Создаем бота и диспетчер
-bot = Bot(token='8048634555:AAFQVcpHcEdF9D7BuJeuT3XjiJHDQlC28QA')
+bot = Bot(token='')
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 now = datetime.now()
@@ -768,7 +768,7 @@ async def admin_password(message: types.Message, state: FSMContext):
     with sq.connect("sq_baze/admin/admin.db") as con:
         cur = con.cursor()
 
-        if text == '123':  # Если пароль правильный
+        if text == '':  # Если пароль правильный
             user_data = (user_id, message.from_user.last_name or '', message.from_user.first_name or '', 'YES')
             cur.execute("INSERT OR IGNORE INTO admins (id, last_name, first_name, admin) VALUES (?, ?, ?, ?)",
                         user_data)
